@@ -1,0 +1,36 @@
+"""Pastel Pop: the adult-coded side of kawaii pastel (satin, ribbons, bows, hearts, tulle, platforms). No school uniforms, no cartoon prints.
+Harajuku Kawaii and Sanrio Cute are skipped at Revealing and above, so the Kawaii Pastel theme needs a style that works at every level."""
+
+STYLE = dict(
+    desc="pastel satin, ribbons, bows, hearts and tulle, sweet but grown-up",
+    palette=["pastel pink", "lavender", "mint green", "baby blue", "butter yellow", "white", "peach"],
+    one=["1|{c} satin ribbon-trim midi dress", "1|{c} soft tulle midi dress with a bow at the waist", "1-2|{c} puff-sleeve dress with a ribbon collar",
+         "2|{c} satin mini dress with a bow at the chest", "2|{c} heart-neckline ruffle mini dress",
+         "3|{c} ribbon-laced satin mini dress with a deep heart neckline", "3|{c} pastel corset mini dress with ruffles",
+         "4|{c} satin ribbon micro dress with a heart cut-out", "4|{c} ruffled micro dress with open sides and bows",
+         "5|{c} ribbon-wrapped satin micro dress tied with bows", "5|{c} tiny heart-shaped satin micro dress held by thin ribbon straps"],
+    top=["1|{c} oversized knit cardigan with bow buttons", "1|{c} puff-sleeve blouse with a satin ribbon collar", "1-2|{c} soft fuzzy sweater with a heart patch",
+         "2|{c} heart-neck puff-sleeve top", "2|{c} ruffled babydoll blouse",
+         "3|{c} satin bow-front bralette top with ribbon straps", "3|{c} heart-shaped bustier top with ribbon lacing", "3|{c} off-shoulder ruffle crop top with a bow",
+         "4|{c} ribbon-strap bandeau with a bow", "4|{c} heart-cut bralette with satin ribbon ties", "4|{c} lace-up satin bustier",
+         "5|{c} heart-shaped satin micro bandeau held with ribbon ties", "5|{c} strap-and-bow micro top, skin showing between the ribbons"],
+    bottom=["1|{c} pleated midi skirt", "1|{c} high-waisted wide-leg trousers", "1-2|{c} tulle midi skirt with a bow belt",
+            "2|{c} pleated mini skirt with a bow belt", "2|{c} tulle mini skirt",
+            "3|{c} satin micro skirt with a bow waist", "3|{c} tulle micro skirt", "3|{c} ruffled micro shorts",
+            "4|{c} micro tulle skirt barely covering", "4|{c} satin micro skirt with ribbon ties at the hips",
+            "5|{c} micro satin skirt held by thin ribbon ties", "5|{c} ribbon-tie micro shorts"],
+    outer=["1|{c} fluffy faux-fur cropped coat", "1-2|{c} satin bomber jacket with a bow patch", "2-3|{c} soft pastel cardigan worn open"],
+    legs=["1-3|{c} sheer pastel tights", "2-5|{c} thigh-high stockings with bow tops", "3-5|{c} over-the-knee stockings with ribbon trim"],
+    feet=["1-2|{c} platform sneakers", "2-5|{c} pastel platform heels with ankle bows", "3-5|{c} ankle-strap platform heels"],
+    head=["1-3|a satin bow headband", "1-4|a big ribbon hair bow", "1|a pastel beret"],
+    acc=dict(
+        neck=["a pastel heart choker", "a ribbon bow choker with a charm", "a pearl heart necklace"],
+        ears=["pastel heart earrings", "small pearl studs", "tiny bow earrings"],
+        wrists=["a pastel charm bracelet", "satin ribbon wrist bows"],
+        hair=["pastel heart hair clips", "satin hair bows"],
+        hands=["glittery pastel nails with tiny charms"],
+        waist=["a ribbon bow belt"],
+        face=["heart-shaped sunglasses"],
+        ankle=["a pastel charm anklet"],
+        extra=["a small heart-shaped bag", "a plush charm shoulder bag", "a pastel mini shoulder bag"]),
+)

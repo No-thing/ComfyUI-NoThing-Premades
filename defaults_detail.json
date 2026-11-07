@@ -1,0 +1,27 @@
+{
+ "v": 1,
+ "sep": "space",
+ "groups": [
+  {
+   "name": "Detail",
+   "exclusive": false,
+   "buttons": [
+    {
+     "label": "Skin Detail",
+     "text": "improve skin detail, detailed skin pores.",
+     "on": false
+    },
+    {
+     "label": "Hair Detail",
+     "text": "improve hair detail, sharp hair.",
+     "on": false
+    },
+    {
+     "label": "Realism",
+     "text": "improve the realism of the image,",
+     "on": false
+    }
+   ]
+  }
+ ]
+}

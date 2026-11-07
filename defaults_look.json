@@ -1,0 +1,136 @@
+{
+ "v": 1,
+ "sep": "newline",
+ "groups": [
+  {
+   "name": "Body",
+   "exclusive": true,
+   "buttons": [
+    {
+     "label": "Bimbo",
+     "text": "hyper-voluptuous bimbo build, insanely massive breasts, exaggerated hourglass waist, extremely wide flared hips, huge thick round bubble butt, gigantic fat thighs, full thighs, exaggerated extreme female proportions.",
+     "on": false
+    },
+    {
+     "label": "Slim Stack",
+     "text": "extremely slender petite frame, flat narrow waist, tight flat stomach, ribcage visible, impossibly massive heavy breasts, gigantic saggy natural breasts, huge chest, slim legs, delicate collarbones, top-heavy silhouette.",
+     "on": false
+    },
+    {
+     "label": "Bottom Heavy",
+     "text": "petite flat chest, small breasts, slim narrow torso, massive colossal hips, gigantically thick thighs, colossal heavy round bubble butt, extreme pear-shaped body build, heavy lower body.",
+     "on": false
+    },
+    {
+     "label": "Skinny",
+     "text": "ultra-skinny fragile petite build, paper-thin frame, dangerously slim silhouette, sunken stomach with visible ribcage, sharp prominent collarbones, extremely thin arms, gap between slender thighs, narrow delicate waist, frail bone structure, tiny waist, delicate petite proportions.",
+     "on": false
+    }
+   ]
+  },
+  {
+   "name": "Face",
+   "exclusive": true,
+   "buttons": [
+    {
+     "label": "Soft Round",
+     "text": "soft round face features, full pinchable cheeks, large expressive doe eyes, insanely massive plump bare lips, exaggerated natural soft pout, delicate jawline, glowing smooth skin.",
+     "on": false
+    },
+    {
+     "label": "Heart Shaped",
+     "text": "heart-shaped facial structure, high soft cheekbones, bedroom eyes with heavy eyelids, alluring playful expression, gigantically thick voluptuous natural lips, bare unpainted pout, slightly parted mouth showing front teeth, smooth soft chin.",
+     "on": false
+    },
+    {
+     "label": "Sharp Glam",
+     "text": "striking diamond face shape, defined high cheekbones, sharp cat-eye glance, dark filled eyebrows, colossal heavy bare lips, exaggerated full natural pouty mouth, sleek elegant jawline, clean natural skin.",
+     "on": false
+    },
+    {
+     "label": "Supermodel",
+     "text": "predatory supermodel face structure, razor-sharp hollow cheekbones, fierce piercing gaze, intense smoldering eyes, hyper-exaggerated gigantic plump bare lips, heavy full natural pout, sharp angular jawline, dominant piercing expression.",
+     "on": false
+    }
+   ]
+  },
+  {
+   "name": "Lighting",
+   "exclusive": true,
+   "buttons": [
+    {
+     "label": "Camgirl",
+     "text": "pitch dark background, atmospheric dim room, intense vibrant purple rim light framing the left silhouette, warm golden-yellow edge light tracing the right side, high-contrast erotic rim lighting, deep moody background shadows.",
+     "on": false
+    },
+    {
+     "label": "Golden Hour",
+     "text": "dark background, rich golden hour directional lighting, warm amber highlight tracing the curves, soft golden edge glow, intimate moody atmosphere, deep cinematic shadows.",
+     "on": false
+    },
+    {
+     "label": "Blue Hour",
+     "text": "dark environment, cool deep blue hour atmospheric lighting, crisp electric blue rim light tracing the shoulders and waist, moody midnight tone, high-contrast erotic edge illumination.",
+     "on": false
+    },
+    {
+     "label": "Gobo & Venetian",
+     "text": "dark moody background, dramatic gobo shadow shapes cast across the skin, sharp venetian blind shadow patterns, high-contrast chiaroscuro lighting, intense erotic light and dark geometric lines, cinematic atmosphere.",
+     "on": false
+    }
+   ]
+  },
+  {
+   "name": "Lens",
+   "exclusive": false,
+   "buttons": [
+    {
+     "label": "Hex Bokeh",
+     "text": "Dreamy out-of-focus hexagonal bokeh, soft glowing geometric light discs, prominent six-sided aperture bokeh shapes in the background blur.",
+     "on": false
+    },
+    {
+     "label": "Anamorphic Bokeh",
+     "text": "Anamorphic hexagonal bokeh, stretched geometric light flares, six-sided specular highlights with horizontal light streaks.",
+     "on": false
+    },
+    {
+     "label": "Hex Lens Flare",
+     "text": "Hexagonal lens flare reflections, internal glass aperture ghosting, hexagonal light artifacts overlapping diagonally across the frame.",
+     "on": false
+    },
+    {
+     "label": "Bokeh Dust",
+     "text": "Dense floating hexagonal bokeh particles, shimmering gold and silver light dots, out-of-focus six-sided glare artifacts creating atmospheric depth.",
+     "on": false
+    }
+   ]
+  },
+  {
+   "name": "Effects",
+   "exclusive": false,
+   "buttons": [
+    {
+     "label": "Prism Refraction",
+     "text": "Kaleidoscopic prism refraction, multi-lens refraction, fractured glass reflections, warped repeating specular echoes.",
+     "on": false
+    },
+    {
+     "label": "Radial Blur",
+     "text": "Intense radial blur effect, dynamic zoom lines radiating from the center focal point, heavy motion streaks expanding outward.",
+     "on": false
+    },
+    {
+     "label": "Slow Shutter",
+     "text": "Slow shutter speed photography, intentional camera movement (ICM), long exposure motion blur, fluid light trails and soft ghosting artifacts.",
+     "on": false
+    },
+    {
+     "label": "Vortex",
+     "text": "Warped swirl distortion, hypnotic swirling vortex, twisting spiral perspective warp, fluid reality-bending spatial distortion.",
+     "on": false
+    }
+   ]
+  }
+ ]
+}

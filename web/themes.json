@@ -1,0 +1,202 @@
+[
+ {
+  "name": "Goth",
+  "cat": "Dark",
+  "desc": "black and grey with red or silver accents"
+ },
+ {
+  "name": "Goth Mommy",
+  "cat": "Dark",
+  "desc": "black leather and velvet, pentagram harnesses, blood red"
+ },
+ {
+  "name": "Mourning Veils",
+  "cat": "Dark",
+  "desc": "black lace, funeral veils, face veils and netting"
+ },
+ {
+  "name": "Emo",
+  "cat": "Dark",
+  "desc": "black, grey and deep red, band tees, plaid micro skirts, strap harnesses, striped gloves and socks"
+ },
+ {
+  "name": "Scene Kid",
+  "cat": "Dark",
+  "desc": "neon and black, tutus, stripes, big colourful hair"
+ },
+ {
+  "name": "Cyber Goth",
+  "cat": "Dark",
+  "desc": "black with neon green, UV purple and hot pink"
+ },
+ {
+  "name": "Neon Raver",
+  "cat": "Neon & Party",
+  "desc": "contrasting neon colours, mesh, holographic, kandi"
+ },
+ {
+  "name": "Y2K Pop",
+  "cat": "Neon & Party",
+  "desc": "early 2000s pop: baby pink, silver, rhinestones"
+ },
+ {
+  "name": "Club Glam",
+  "cat": "Neon & Party",
+  "desc": "going-out glamour: fabric club dresses, black, gold and red"
+ },
+ {
+  "name": "Idol Stage",
+  "cat": "Neon & Party",
+  "desc": "J-pop stage costumes, sequins and ribbons"
+ },
+ {
+  "name": "Y2K Techwear",
+  "cat": "Neon & Party",
+  "desc": "silver nylon cropped jackets, parachute pants, chrome and reflective straps"
+ },
+ {
+  "name": "Cosplay",
+  "cat": "Neon & Party",
+  "desc": "27 famous characters, each a complete fixed look (hair, outfit, props)"
+ },
+ {
+  "name": "Kawaii Pastel",
+  "cat": "Cute",
+  "desc": "pastel pink, mint and lavender, bows and charms"
+ },
+ {
+  "name": "Coquette",
+  "cat": "Cute",
+  "desc": "bows, lace, ribbons and pearls in soft pinks"
+ },
+ {
+  "name": "Doll Style",
+  "cat": "Cute",
+  "desc": "frilly doll dresses and lace"
+ },
+ {
+  "name": "Jirai Kei",
+  "cat": "Cute",
+  "desc": "black and pink ruffles and ribbons"
+ },
+ {
+  "name": "Gyaru",
+  "cat": "Cute",
+  "desc": "tanned glam, mini skirts and platforms"
+ },
+ {
+  "name": "Punk",
+  "cat": "Edgy",
+  "desc": "tartan, studs and leather, black and red"
+ },
+ {
+  "name": "Grunge",
+  "cat": "Edgy",
+  "desc": "flannel, torn tees, washed-out and moody"
+ },
+ {
+  "name": "Alt Brands",
+  "cat": "Edgy",
+  "desc": "Dolls Kill, Killstar, Disturbia and friends"
+ },
+ {
+  "name": "Cyber Techwear",
+  "cat": "Edgy",
+  "desc": "cropped tech jackets, tactical harnesses, straps, masks and visors"
+ },
+ {
+  "name": "Jacket Season",
+  "cat": "Edgy",
+  "desc": "cropped pilot, leather and puffer jackets over very little"
+ },
+ {
+  "name": "Luxury Editorial",
+  "cat": "Glam",
+  "desc": "luxury houses, editorial makeup, black, ivory and gold"
+ },
+ {
+  "name": "Luxury Couture",
+  "cat": "Glam",
+  "desc": "couture lingerie: sheer silk robes, black lace, pearls, gold-hardware harnesses"
+ },
+ {
+  "name": "Old Money",
+  "cat": "Glam",
+  "desc": "preppy and heritage, navy and cream"
+ },
+ {
+  "name": "Boudoir Romantic",
+  "cat": "Glam",
+  "desc": "soft lace, silk, ivory and blush"
+ },
+ {
+  "name": "Bridal",
+  "cat": "Glam",
+  "desc": "white and ivory lace, veils"
+ },
+ {
+  "name": "Pin-up",
+  "cat": "Glam",
+  "desc": "1950s pin-up: cherry red, black and white"
+ },
+ {
+  "name": "Masquerade Ball",
+  "cat": "Glam",
+  "desc": "gowns, feathered masks, gold and deep red"
+ },
+ {
+  "name": "Streetwear",
+  "cat": "Everyday",
+  "desc": "sneakers, logos, oversized and sporty"
+ },
+ {
+  "name": "Cosy Baggy",
+  "cat": "Everyday",
+  "desc": "oversized, soft and comfortable"
+ },
+ {
+  "name": "Cottage Mori",
+  "cat": "Everyday",
+  "desc": "linen, earthy tones, forest girl"
+ },
+ {
+  "name": "Beach Day",
+  "cat": "Everyday",
+  "desc": "huge sun hats, sheer white dresses, bikini strings, sand and sea colours"
+ },
+ {
+  "name": "Sporty Girl",
+  "cat": "Everyday",
+  "desc": "cropped hoodies over sports bras, low-waist sweatpants with a high-rise thong"
+ },
+ {
+  "name": "Boxing Gym",
+  "cat": "Everyday",
+  "desc": "Lonsdale, Everlast, Gymshark and Venum, red and black"
+ },
+ {
+  "name": "Boho Hippie",
+  "cat": "Everyday",
+  "desc": "modern festival hippie: dreadlocks, beads and shells in the hair, patchwork skirts, crochet, layered crystal jewellery, hand-poked tattoos"
+ },
+ {
+  "name": "Dominant",
+  "cat": "Kink",
+  "desc": "leather, latex, harnesses, thigh boots"
+ },
+ {
+  "name": "Submissive",
+  "cat": "Kink",
+  "desc": "satin, ribbons, ring collars, soft pastels"
+ },
+ {
+  "name": "Latex Fetish",
+  "cat": "Kink",
+  "desc": "glossy latex and PVC"
+ },
+ {
+  "name": "Kigurumi Mix",
+  "cat": "Kink",
+  "desc": "animal onesies mixed with harnesses"
+ }
+]
