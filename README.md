@@ -2,7 +2,7 @@
 
 **No_Thing Roulette Bar and Prompt Bars.** A completely free roulette randomiser for ComfyUI: pick a Style, how much, what stays in frame and the shape, press **Roll all**, and the prompt writes itself (roughly millions of combinations). Face, hair, body, makeup, outfit and underwear in one wide node, with Simple and Advanced pages, a fixed seed to repeat any roll, and tips in the node.
 
-Works with the [LightCraft Edit Page](https://github.com/No-thing/ComfyUI-LightCraft). Install: copy this folder into `ComfyUI/custom_nodes/`, restart ComfyUI, hard-refresh the browser.
+Free to use, not free to copy: see [LICENSE](LICENSE). Works with the [LightCraft Edit Page](https://github.com/No-thing/ComfyUI-LightCraft). Install: copy this folder into `ComfyUI/custom_nodes/`, restart ComfyUI, hard-refresh the browser.
 
 ---
 

@@ -1,21 +1,25 @@
-No_Thing Free Use Licence v1
+No_Thing Roulette Licence v1 (strict)
 
-Copyright (c) 2026 No_Thing (https://github.com/No-thing)
+Copyright (c) 2026 No_Thing (https://github.com/No-thing). All rights reserved except as stated below.
 
-These packs are free. You may:
+This software and everything in this repository (code, prompt datasets and word lists, button texts, icons, images, documentation) is the property of No_Thing. It is free to use, but it is not free to copy.
 
-1. Use them for personal and commercial image-making (the pictures you make are yours).
-2. Modify them for your own use.
-3. Share them unchanged or modified, for free, as long as you keep this licence, keep the credit to No_Thing, and say what you changed.
+You may:
 
-You may not:
+1. Download it from the official sources (this repository or the official No_Thing Civitai page) and use it, for personal and commercial image-making. The pictures you make with it are yours.
+2. Change it for your own private use on your own computer.
 
-4. Sell the packs or your copy of them, or put them behind a paywall, alone or inside a paid bundle or subscription. Selling or posting the images you make with them, client work, and paid tutorials that teach how to use them are all fine.
-5. Use the code, documentation, images, icons or text in this repository to train, fine-tune, or build datasets for AI or machine-learning models, or to have an AI system recreate or clone them.
-6. Re-upload them elsewhere and present them as your own work.
+You may not, without written permission from No_Thing:
 
-Third-party parts keep their own licences and credit: the UI idea comes from storytold/lightcraft, outpaint and tiled restore nodes are by AusBoss, face landmarks use Google MediaPipe. This licence does not change theirs.
+3. Copy, re-upload, mirror, host or redistribute it, or any part of it, in any form, modified or unmodified, free or paid. Share a link to the official page instead.
+4. Sell it, rent it, or charge for access to it, alone or inside a bundle, course, subscription, workflow pack or paid service. This includes selling copies or repackaged versions.
+5. Build a product, node pack, workflow or service from it, or from a substantial part of it, including its prompt datasets, word lists and style definitions.
+6. Extract or republish its datasets, button texts or style definitions.
+7. Use it, or any part of it, to train, fine-tune, evaluate or build datasets for AI or machine-learning models, or have an AI system recreate, clone or translate it.
+8. Remove or hide this licence or the credit to No_Thing, or present it as your own work.
+
+If you break these terms, your permission to use it ends. Contact No_Thing through GitHub or the Civitai page to ask for permission.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE AUTHOR IS NOT LIABLE FOR ANY CLAIM OR DAMAGE ARISING FROM ITS USE.
 
-Note: this is a custom source-available licence, not an open source licence, and it is not legal advice.
+Note: this is a custom all-rights-reserved licence, not an open source licence, and not legal advice. GitHub's terms let others view and fork public repositories on GitHub; those rights do not override the restrictions above.
