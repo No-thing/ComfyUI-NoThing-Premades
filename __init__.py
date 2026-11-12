@@ -8,14 +8,6 @@ from .light_node import NoThingLighting
 from .rack_node import NoThingRouletteBar
 from .banner_node import NoThingBanner
 
-try:                                    # the checker can never take the other nodes down with it
-    from .note_node import NoThingWorkflowCheck
-except Exception:
-    import traceback
-    print("[No_Thing] Workflow Check failed to load:")
-    traceback.print_exc()
-    NoThingWorkflowCheck = None
-
 WEB_DIRECTORY = "./web"
 NODE_CLASS_MAPPINGS = {
     "NoThingPromptBar": NoThingPromptBar,
@@ -31,8 +23,6 @@ NODE_CLASS_MAPPINGS = {
     "NoThingRouletteBar": NoThingRouletteBar,
     "NoThingBanner": NoThingBanner,
 }
-if NoThingWorkflowCheck is not None:
-    NODE_CLASS_MAPPINGS["NoThingWorkflowCheck"] = NoThingWorkflowCheck
 NODE_DISPLAY_NAME_MAPPINGS = {
     "NoThingPromptBar": "No_Thing Prompt Bar (Look)",
     "NoThingPromptBarDetail": "No_Thing Prompt Bar (Detail)",
@@ -47,6 +37,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "NoThingRouletteBar": "No_Thing Roulette Bar (face, hair, body, makeup, outfit, underwear in one wide bar)",
     "NoThingBanner": "No_Thing Banner (picture only)",
 }
-if NoThingWorkflowCheck is not None:
-    NODE_DISPLAY_NAME_MAPPINGS["NoThingWorkflowCheck"] = "No_Thing Workflow Check (models + packs)"
 __all__ = ["NODE_CLASS_MAPPINGS", "NODE_DISPLAY_NAME_MAPPINGS", "WEB_DIRECTORY"]

@@ -1,6 +1,6 @@
 # ComfyUI-NoThing-Premades
 
-> **Security update (2026-11-12):** an earlier build of the Workflow Check node could install a node pack from a GitHub link written in a workflow note. That feature has been removed. The node now only shows an **Open GitHub** link and never runs `git` or `pip`. If you used an older version, update, and check `custom_nodes` for packs you do not recognise. Thanks to lonecatone23 for reporting it.
+> **Security update (2026-11-12):** the Workflow Check node is gone for good. An earlier build could install a node pack from a GitHub link written in a workflow note, and it also downloaded model files. Both features are removed with the whole node: nothing in this pack runs `git`, `pip` or downloads anything now. If you used an older version, update, and check `custom_nodes` for packs you do not recognise. Thanks to lonecatone23 for reporting it.
 
 **No_Thing Roulette Bar and Prompt Bars.** A completely free roulette randomiser for ComfyUI: pick a Style, how much, what stays in frame and the shape, press **Roll all**, and the prompt writes itself (roughly millions of combinations). Face, hair, body, makeup, outfit and underwear in one wide node, with Simple and Advanced pages, a fixed seed to repeat any roll, and tips in the node.
 
@@ -187,10 +187,6 @@ A fifth square next to **In frame**: the general body shape in five steps, **Ver
 ### Luxury Couture (underwear)
 A new Underwear style with 37 high-end designer lingerie sets: sheer silk and organza robes, Chantilly and Leavers lace, gold-hardware strap harnesses (pentagram, star, art deco, constellation, filigree chains), thigh straps and hip / backside harnesses, pearls and crystals. It leaves out bunny ears, fishnets, face veils and gothic chokers, and never adds a second robe on top of a set that already has one. Nodes saved before it existed get the button added automatically. It is also picked by the Club Glam, Boudoir Romantic and Masquerade Ball styles.
 
-
-## Workflow Check (checker / model downloader)
-Add "No_Thing Workflow Check (models + packs)" to a workflow (double-click canvas, type `workflow check`). It reads every model loader (subgraphs too): **Get** downloads a missing file, **Use match** puts a similar file you already have into the slot, **Add link / Find** for files without a known link (saved in the node), **Get everything** downloads all missing files with a link. Missing node packs get an **Open GitHub** link only: the node never installs code for you, so install packs yourself with ComfyUI-Manager after checking them. Bypassed loaders are dimmed and skipped. Keys stay in your browser.
-Press **Edit** on the card to get the table: file name, folder, size, download link, note per model, plus node packs (GitHub link + a probe node class). "Detect from this workflow" fills a row for every loader file so you only paste links. The table is saved inside the node, so shipping the workflow ships the links.
 
 ## Boho Hippie (theme)
 Modern festival hippie: dreadlocks, braids, beads, shells and wraps in the hair (new hair category "Dreads & Boho"), patchwork skirts, crochet, kimonos, chunky sweaters, layered crystal jewellery, hand-poked tattoos, and a "Boho Crochet" lingerie family. Icon: web/icons/boho_hippie.png.

@@ -11,7 +11,7 @@ import { app } from "../../scripts/app.js";
 // Drags are tracked by pointer *delta* (client pixels / canvas zoom), so the result does not
 // depend on any canvas-offset conversion, and updates are batched to one per animation frame.
 
-const CLASSES = new Set(["NoThingPromptBar", "NoThingPromptBarDetail", "NoThingOutfitRoulette", "NoThingUnderwearRoulette", "NoThingMakeupRoulette", "NoThingHeadRoulette", "NoThingFaceRoulette", "NoThingHairRoulette", "NoThingBodyRoulette", "NoThingLighting", "NoThingRouletteBar", "NoThingWorkflowCheck"]);
+const CLASSES = new Set(["NoThingPromptBar", "NoThingPromptBarDetail", "NoThingOutfitRoulette", "NoThingUnderwearRoulette", "NoThingMakeupRoulette", "NoThingHeadRoulette", "NoThingFaceRoulette", "NoThingHairRoulette", "NoThingBodyRoulette", "NoThingLighting", "NoThingRouletteBar"]);
 
 export const zoom = () => (app.canvas && app.canvas.ds && app.canvas.ds.scale) || 1;
 
