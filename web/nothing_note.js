@@ -183,14 +183,8 @@ function setKeysPrompt(node) {
   });
 }
 
-async function installPack(node, key, url) {
-  const S = node.__ntn;
-  try {
-    const j = await (await api.fetchApi("/nothing_check/install_pack", { method: "POST", body: JSON.stringify({ url }) })).json();
-    S.jobs[key] = { id: j.id, state: "running", note: "starting" }; poll(node);
-  } catch (e) { S.jobs[key] = { state: "error", error: "Could not start the install." }; }
-  node.setDirtyCanvas(true, true);
-}
+// Node packs are never installed from here: running someone else's code must stay a deliberate step in ComfyUI-Manager.
+function openPack(url) { try { window.open(url, "_blank", "noopener,noreferrer"); } catch (e) { /* popup blocked */ } }
 
 // ---- the editor: a plain dialog over the page (never inside the node, so it cannot squeeze) -----
 const CSS = `
@@ -242,7 +236,7 @@ function openEditor(node) {
     for (const r of scanGraph(S).rows) { if (r.manual || have.has(base(r.file))) continue; models.add({ name: r.file, dir: r.kind, url: linkFor(S, r.file) }); }
   };
   const form = el("div", "ntn-b"); form.style.padding = "0";
-  form.append(el("div", "ntn-hint", "Paste the download link next to each file. Get / Get everything on the card use these links. Bypassed loaders are skipped."), models.box, tools([["+ model", () => models.add({})], ["Detect from this workflow", detect]]), el("div", "ntn-hint", "Node packs: the probe node is checked against this install; missing = Install button (GitHub)."), packs.box, tools([["+ pack", () => packs.add({})]]));
+  form.append(el("div", "ntn-hint", "Paste the download link next to each file. Get / Get everything on the card use these links. Bypassed loaders are skipped."), models.box, tools([["+ model", () => models.add({})], ["Detect from this workflow", detect]]), el("div", "ntn-hint", "Node packs: the probe node is checked against this install; missing = a link to its GitHub page. Install it yourself with ComfyUI-Manager."), packs.box, tools([["+ pack", () => packs.add({})]]));
   const read = () => parse(JSON.stringify({
     models: models.list.map((e) => ({ name: e.cells[0].value, dir: e.cells[1].value, size: e.cells[2].value, url: e.cells[3].value, note: e.cells[4].value })),
     packs: packs.list.map((e) => ({ name: e.cells[0].value, url: e.cells[1].value, node: e.cells[2].value })),
@@ -356,11 +350,11 @@ function drawCard(node, ctx, y0, width) {
       const by = y + 3, bh = ROW - 10, bxr = x0 + w - 10;
       if (job && job.state === "running") txt(ctx, job.note || "installing…", bxr, y + 21, COL.or, font(600, 12), "right");
       else if (job && job.state === "done") txt(ctx, job.note || "installed - restart ComfyUI", bxr, y + 21, COL.or, font(600, 12), "right");
-      else if (p.url) { btn(ctx, node, "p" + t.type, job?.state === "error" ? "Retry" : "Install", bxr - 70, by, 70, bh, () => installPack(node, "pack|" + t.type, p.url), true); txt(ctx, job?.state === "error" ? "FAILED" : "MISSING", bxr - 82, y + 21, COL.or, font(700, 11), "right"); }
+      else if (p.url) { btn(ctx, node, "p" + t.type, "Open GitHub", bxr - 100, by, 100, bh, () => openPack(p.url), true); txt(ctx, "MISSING", bxr - 112, y + 21, COL.or, font(700, 11), "right"); }
       else { btn(ctx, node, "p" + t.type, "Add repo link", bxr - 110, by, 110, bh, () => ask("GitHub link for the pack that has '" + t.type + "'", "https://github.com/", (v) => { v = String(v || "").trim(); if (v) { v = okUrl(v); if (!v) return; S.data.packs.push({ name: t.type, url: v, node: t.type }); save(node); node.setDirtyCanvas(true, true); } }), false); txt(ctx, "MISSING", bxr - 122, y + 21, COL.or, font(700, 11), "right"); }
       y += ROW;
     }
-    txt(ctx, "After a node pack installs, restart ComfyUI once and reload the page.", x0 + 4, y + 12, COL.mut, font(500, 11)); y += 18;
+    txt(ctx, "Install packs with ComfyUI-Manager (check the code first), restart ComfyUI once and reload the page.", x0 + 4, y + 12, COL.mut, font(500, 11)); y += 18;
   }
   const nh = y - y0 + 12;
   if (Math.abs(nh - S.h) > 1) { S.h = nh; setTimeout(() => relayout(node), 0); }

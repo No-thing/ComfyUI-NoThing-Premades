@@ -9,8 +9,6 @@ and travel with each request; the server never writes them to disk.
 """
 import json
 import os
-import subprocess
-import sys
 import threading
 import uuid
 
@@ -127,38 +125,6 @@ def start_get(kind, f, url, key=None, size=0):
     return jid
 
 
-PACK_JOBS = {}
-
-
-def _install_pack(jid, url):
-    job = PACK_JOBS[jid]
-    try:
-        u = E.urllib.parse.urlparse(url)
-        parts = [p for p in u.path.strip("/").split("/") if p]
-        if u.scheme != "https" or (u.hostname or "").lower() != "github.com" or len(parts) < 2:
-            raise ValueError("only https://github.com/<owner>/<repo> links")
-        repo = parts[1][:-4] if parts[1].endswith(".git") else parts[1]
-        if not repo.replace("-", "").replace("_", "").replace(".", "").isalnum():
-            raise ValueError("odd repository name")
-        root = folder_paths.get_folder_paths("custom_nodes")[0]
-        target = os.path.join(root, repo)
-        if os.path.exists(target):
-            job["state"] = "done"; job["note"] = "already there - restart ComfyUI"
-            return
-        job["note"] = "downloading"
-        subprocess.run(["git", "clone", "--depth", "1", f"https://github.com/{parts[0]}/{repo}", target],
-                       check=True, capture_output=True, timeout=600)
-        req = os.path.join(target, "requirements.txt")
-        if os.path.isfile(req):
-            job["note"] = "installing requirements"
-            subprocess.run([sys.executable, "-m", "pip", "install", "-r", req], check=True, capture_output=True, timeout=1800)
-        job["state"] = "done"; job["note"] = "installed - restart ComfyUI"
-    except subprocess.CalledProcessError as e:
-        job["state"] = "error"; job["error"] = (e.stderr or b"").decode("utf-8", "ignore")[-300:] or str(e)
-    except Exception as e:
-        job["state"] = "error"; job["error"] = str(e)
-
-
 def _register_routes():
     routes = PromptServer.instance.routes
 
@@ -186,7 +152,7 @@ def _register_routes():
     async def nt_progress(request):
         out = {}
         for i in [i for i in request.query.get("ids", "").split(",") if i]:
-            j = E.JOBS.get(i) or PACK_JOBS.get(i)
+            j = E.JOBS.get(i)
             if j:
                 out[i] = {k: j.get(k) for k in ("file", "done", "total", "speed", "state", "error", "note")}
         return web.json_response(out)
@@ -197,14 +163,6 @@ def _register_routes():
         if j:
             j["cancel"] = True
         return web.json_response(dict(ok=True))
-
-    @routes.post("/nothing_check/install_pack")
-    async def nt_pack(request):
-        url = (await request.json()).get("url", "")
-        jid = uuid.uuid4().hex[:10]
-        PACK_JOBS[jid] = dict(file=url.rsplit("/", 1)[-1], state="running", error=None, note="starting", done=0, total=0)
-        threading.Thread(target=_install_pack, args=(jid, url), daemon=True).start()
-        return web.json_response(dict(id=jid))
 
 
 if PromptServer is not None and web is not None:
