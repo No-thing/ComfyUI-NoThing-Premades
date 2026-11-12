@@ -110,7 +110,7 @@ def _is_civitai(url):
     return "civitai" in h
 
 
-def start_get(kind, f, url, key=None, size=0):
+def start_get(kind, f, url, key=None, size=0, allow_unsafe=False):
     if kind not in ALIAS or _bad(f):
         raise ValueError("bad file name")
     url = E.hf_resolve_url(url or "")
@@ -121,7 +121,7 @@ def start_get(kind, f, url, key=None, size=0):
         url, size = r["download"], r["size"] or size
     dest, name = _dest(kind, f)
     jid = uuid.uuid4().hex[:10]
-    E.start_download(jid, url, dest, name, size, key)
+    E.start_download(jid, url, dest, name, size, key, allow_unsafe=allow_unsafe)
     return jid
 
 
@@ -143,8 +143,10 @@ def _register_routes():
     async def nt_get(request):
         b = await request.json()
         try:
-            jid = start_get(b.get("kind"), b.get("file"), b.get("url"), b.get("key") or None, b.get("size") or 0)
+            jid = start_get(b.get("kind"), b.get("file"), b.get("url"), b.get("key") or None, b.get("size") or 0, bool(b.get("allow_unsafe")))
             return web.json_response(dict(id=jid))
+        except PermissionError:
+            return web.json_response(dict(error="unsafe_format"), status=400)
         except Exception as e:
             return web.json_response(dict(error=str(e)), status=400)
 

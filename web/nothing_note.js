@@ -135,14 +135,17 @@ function poll(node) {
   tick();
 }
 
-async function getOne(node, r) {
+async function getOne(node, r, allowUnsafe = false) {
   const S = node.__ntn, url = linkFor(S, r.file);
   if (!url) { addLink(node, r); return; }
   if (S.jobs[r.id]?.state === "running") return;
   try {
-    const res = await api.fetchApi("/nothing_check/get", { method: "POST", body: JSON.stringify({ kind: r.kind, file: r.file, url, key: keyFor(url) }) });
+    const res = await api.fetchApi("/nothing_check/get", { method: "POST", body: JSON.stringify({ kind: r.kind, file: r.file, url, key: keyFor(url), allow_unsafe: allowUnsafe }) });
     const j = await res.json();
-    if (j.error) { S.jobs[r.id] = { state: "error", error: j.error }; }
+    if (j.error === "unsafe_format") {
+      if (window.confirm(r.file + " is an older model format (pickle). These files CAN contain hidden code that runs when ComfyUI loads them. Only download it if you trust where it comes from. Download anyway?")) return getOne(node, r, true);
+      S.jobs[r.id] = { state: "error", error: "Cancelled: unsafe file format." };
+    } else if (j.error) { S.jobs[r.id] = { state: "error", error: j.error }; }
     else { S.jobs[r.id] = { id: j.id, state: "running", done: 0, total: 0, speed: 0 }; poll(node); }
   } catch (e) { S.jobs[r.id] = { state: "error", error: "Could not start the download." }; }
   node.setDirtyCanvas(true, true);

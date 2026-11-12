@@ -6,6 +6,7 @@ ALLOWED_HOSTS = ("huggingface.co", "hf.co", "civitai.com", "civitai.red", "githu
                  "objects.githubusercontent.com", "cdn-lfs.huggingface.co", "cdn-lfs.hf.co",
                  "cas-bridge.xethub.hf.co", "xethub.hf.co", "cdn.civitai.com", "civitai-delivery-worker-prod.5ac0637cfd0766c97916cefa3764fbdf.r2.cloudflarestorage.com")
 MODEL_EXT = (".safetensors", ".ckpt", ".pt", ".pth", ".bin", ".gguf", ".sft")
+SAFE_EXT = (".safetensors", ".gguf", ".sft")   # cannot hide code; the other types are pickle files and can
 MIN_OK = 0.97          # a file smaller than 97% of the expected size counts as broken
 JOBS = {}              # id -> job dict (progress)
 _lock = threading.Lock()
@@ -83,12 +84,14 @@ def file_state(path, expect=0):
     return "found"
 
 
-def start_download(job_id, url, dest_dir, filename, size=0, key=None, headers_extra=None):
+def start_download(job_id, url, dest_dir, filename, size=0, key=None, headers_extra=None, allow_unsafe=False):
     if not host_ok(url):
         raise ValueError("host not allowed: " + url)
     filename = os.path.basename(filename.replace("\\", "/"))
     if not filename.lower().endswith(MODEL_EXT):
         raise ValueError("not a model file: " + filename)
+    if not filename.lower().endswith(SAFE_EXT) and not allow_unsafe:
+        raise PermissionError("unsafe_format")
     os.makedirs(dest_dir, exist_ok=True)
     final = os.path.join(dest_dir, filename)
     job = dict(id=job_id, file=filename, done=0, total=size, speed=0, state="running", error=None, path=final, cancel=False)
