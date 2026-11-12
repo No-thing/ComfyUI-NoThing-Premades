@@ -101,8 +101,8 @@ def export_themes():
         path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "web", "themes.json")
         with open(path, "w", encoding="utf-8") as f:
             json.dump(themes_data.listing(), f, indent=1, ensure_ascii=False)
-    except Exception:
-        pass
+    except Exception as e:              # not fatal (the dropdown keeps its last list), but never silent
+        print(f"[No_Thing] could not write web/themes.json ({e}). Is the pack folder read-only?")
 
 
 def export_icons():
@@ -114,8 +114,8 @@ def export_icons():
         names = sorted(f[:-4] for f in os.listdir(d) if f.lower().endswith(".png"))
         with open(os.path.join(d, "index.json"), "w", encoding="utf-8") as f:
             json.dump(names, f)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[No_Thing] could not write web/icons/index.json ({e}). Is the pack folder read-only?")
 
 
 export_themes()
