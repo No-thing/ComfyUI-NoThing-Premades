@@ -1,5 +1,7 @@
 # ComfyUI-NoThing-Premades
 
+> **Security update (2026-11-12):** an earlier build of the Workflow Check node could install a node pack from a GitHub link written in a workflow note. That feature has been removed. The node now only shows an **Open GitHub** link and never runs `git` or `pip`. If you used an older version, update, and check `custom_nodes` for packs you do not recognise. Thanks to lonecatone23 for reporting it.
+
 **No_Thing Roulette Bar and Prompt Bars.** A completely free roulette randomiser for ComfyUI: pick a Style, how much, what stays in frame and the shape, press **Roll all**, and the prompt writes itself (roughly millions of combinations). Face, hair, body, makeup, outfit and underwear in one wide node, with Simple and Advanced pages, a fixed seed to repeat any roll, and tips in the node.
 
 Free to use, not free to copy: see [LICENSE](LICENSE). Works with the [LightCraft Edit Page](https://github.com/No-thing/ComfyUI-LightCraft). Install: copy this folder into `ComfyUI/custom_nodes/`, restart ComfyUI, hard-refresh the browser.
