@@ -184,7 +184,7 @@ function setKeysPrompt(node) {
 }
 
 // Node packs are never installed from here: running someone else's code must stay a deliberate step in ComfyUI-Manager.
-function openPack(url) { try { window.open(url, "_blank", "noopener,noreferrer"); } catch (e) { /* popup blocked */ } }
+function openPack(url) { if (!/^https:\/\/github\.com\/[^\s/]+\/[^\s/]+/i.test(String(url || ""))) return; try { window.open(url, "_blank", "noopener,noreferrer"); } catch (e) { /* popup blocked */ } }
 
 // ---- the editor: a plain dialog over the page (never inside the node, so it cannot squeeze) -----
 const CSS = `
