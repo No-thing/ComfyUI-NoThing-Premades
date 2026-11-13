@@ -15,7 +15,7 @@ const F = (w, px) => `${w} ${px}px ${UIF}`;
 const COL = { panel: "#2B2B2B", well: "#1D1D1D", rule: "#444444", btn: "#383838", head: "#EAE5DC", label: "#A8A39A",
   orange: "#ff8a2a", onBg: "#3a2414", onText: "#fff1e4", offEdge: "#4a4a4a", offText: "#D8D8D8", glow: "rgba(255,138,42,0.55)" };
 const STYLE_H = 40, SQ = 150, SIMPLE_H = 18 + SQ + 50, TAB_W = 118, TAB_H = 30;
-const PAD = 10, HEAD_H = 46, CARD_H = 64, CGAP = 6, BTN_H = 18, GAP = 3, LABEL_W = 78, FOOT_H = 30, MIN_W = 900, PANEL_HEAD = 28;
+const PAD = 10, HEAD_H = 46, CARD_H = 64, CGAP = 6, BTN_H = 18, GAP = 3, LABEL_W = 78, FOOT_H = 30, MIN_W = 1070, PANEL_HEAD = 28;
 const SEPS = [["newline", "New line"], ["space", "Space"], ["comma", "Comma"]];
 const ALIAS = { "No bottoms": "No pants" };
 const dl = (l) => ALIAS[l] || l;
@@ -79,6 +79,36 @@ function frameNow(S) {                                   // [top, bottom] of the
 // ---- the Shape square: a simple figure whose widths ease between five body shapes (very slim ... hourglass); web/icons/shape_1..5.png replace it when they exist
 const SHAPES = [["Very slim", "very slim, narrow frame"], ["Slim", "slender with soft curves"], ["Balanced", "natural proportions"], ["Curvy", "full bust, defined waist, wide hips"], ["Hourglass", "exaggerated hourglass"]];
 const SHAPE_W = [[.100, .075, .062, .078, .060], [.105, .090, .068, .092, .070], [.110, .105, .078, .110, .082], [.115, .130, .072, .135, .105], [.118, .155, .060, .160, .125]];   // half-widths (of the tile) at shoulders, bust, waist, hips, thigh
+// ---- the Face square: the Face row's shapes, one at a time. Each shape is drawn from five half-widths (forehead, cheekbones, jaw, chin tip) and a length
+const FACE_SHAPES = [   // name, short text, [forehead, cheek, jaw, chin, length]
+  ["Oval", "balanced, harmonious", [.78, .88, .70, .22, 1.00]], ["Heart", "wide forehead, pointed chin", [.92, .88, .55, .10, 1.00]],
+  ["Round", "soft, full cheeks", [.80, .94, .86, .40, .88]], ["Square", "strong jawline", [.85, .90, .88, .55, .92]],
+  ["Diamond", "sharp high cheekbones", [.60, .98, .58, .16, 1.00]], ["Long", "elegant, high forehead", [.72, .78, .68, .28, 1.14]],
+  ["V-line", "tapered chin", [.82, .86, .50, .08, 1.05]], ["Angular", "chiselled, defined jaw", [.78, .92, .78, .34, 1.00]],
+  ["Soft full", "full-cheeked, gentle jaw", [.82, .96, .88, .48, .90]],
+];
+const faceNow = (S, i) => {                                                                     // the profile, eased from the previous shape to the chosen one
+  const to = FACE_SHAPES[Math.max(0, i)][2], from = S.faFrom || to, e = easeOutExpo((now() - (S.faT || -1e9)) / 520);
+  return to.map((v, k) => from[k] + (v - from[k]) * e);
+};
+function drawFace(ctx, cx, top, h, prof, color, alpha) {
+  const [fo, ch, jw, tip, len] = prof, H = h * len, W = h * 0.36;                                 // W = largest half-width
+  const right = [[W * 0.66 * fo, 0.085], [W * fo, 0.20], [W * ch, 0.46], [W * jw, 0.76], [W * tip * 0.9, 0.95]];       // half-width at each height (fraction of H)
+  const pts = [[0, 0], ...right.map(([x, y]) => [x, y * H]), [0, H], ...right.slice().reverse().map(([x, y]) => [-x, y * H])].map(([x, y]) => [cx + x, top + y]);
+  ctx.save(); ctx.globalAlpha *= alpha; ctx.fillStyle = color; ctx.strokeStyle = color; ctx.lineWidth = 3; ctx.lineJoin = "round";
+  const n = pts.length; ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+  for (let i = 0; i < n; i++) {                                                                   // closed Catmull-Rom spline through the points, so the outline is smooth and symmetric
+    const p0 = pts[(i - 1 + n) % n], p1 = pts[i], p2 = pts[(i + 1) % n], p3 = pts[(i + 2) % n];
+    ctx.bezierCurveTo(p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6, p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6, p2[0], p2[1]);
+  }
+  ctx.closePath(); const a0 = ctx.globalAlpha; ctx.globalAlpha = a0 * 0.22; ctx.fill(); ctx.globalAlpha = a0; ctx.stroke();
+  ctx.restore();
+  ctx.save(); ctx.globalAlpha *= alpha * 0.9; ctx.fillStyle = color;                              // two eyes and a mouth, so it reads as a face
+  const ey = top + H * 0.42, ex = W * ch * 0.42;
+  [-1, 1].forEach((sd) => { ctx.beginPath(); ctx.ellipse(cx + sd * ex, ey, 5.5, 3.2, 0, 0, Math.PI * 2); ctx.fill(); });
+  ctx.lineWidth = 2.6; ctx.lineCap = "round"; ctx.strokeStyle = color; ctx.beginPath(); ctx.moveTo(cx - W * 0.22, top + H * 0.74); ctx.quadraticCurveTo(cx, top + H * 0.79, cx + W * 0.22, top + H * 0.74); ctx.stroke();
+  ctx.restore();
+}
 function shapeNow(S, n) {
   const to = SHAPE_W[Math.min(5, Math.max(1, n)) - 1], from = S.shFrom || to, e = easeOutExpo((now() - (S.shT || -1e9)) / 600);
   return to.map((v, i) => from[i] + (v - from[i]) * e);
@@ -116,6 +146,7 @@ const TIPS = [
   ["ROULETTE", "Covered and Cute leave underwear out of the prompt completely and keep the body wording vague."],
   ["ROULETTE", "In frame: Top only leaves bottoms, shoes and legwear out, so the model does not pull the camera back."],
   ["ROULETTE", "Shape sets the general body from Very slim to Hourglass. Your own Bust, Waist and Hips picks still win."],
+  ["ROULETTE", "Face picks the face shape: Oval, Heart, Diamond and more. Click again after the last one to roll any face."],
   ["ROULETTE", "Click a bar under HOW MUCH to jump to a level. Click the last level again to roll any amount."],
   ["ROULETTE", "Advanced shows every part and button. Simple is for rolling, Advanced is for steering."],
   ["ROULETTE", "Cosplay rolls one famous character per roll: hair, outfit and props arrive together, so nothing clashes."],
@@ -404,7 +435,7 @@ function drawBar(ctx, node, y0) {
 
   // ---- SIMPLE: a style square, an amount square and the prompt beside them
   if (!lay.fine) {
-    const by = y0 + HEAD_H + 2, sqy = by + 18, gap = 18, x2 = PAD + SQ + gap, xf = PAD + 2 * (SQ + gap), xs = PAD + 3 * (SQ + gap), x3 = PAD + 4 * (SQ + gap), w3 = width - PAD - x3;
+    const by = y0 + HEAD_H + 2, sqy = by + 18, gap = 18, x2 = PAD + SQ + gap, xf = PAD + 2 * (SQ + gap), xs = PAD + 3 * (SQ + gap), xc = PAD + 4 * (SQ + gap), x3 = PAD + 5 * (SQ + gap), w3 = width - PAD - x3;
     const cap = (t, cx) => { ctx.font = F(700, 10); ctx.fillStyle = COL.orange; ctx.textAlign = "left"; ctx.textBaseline = "middle"; ctx.fillText(t, cx + 2, by + 8); };
     const tile = (tx, fillA, fillB, radius) => {
       ctx.save(); ctx.shadowColor = "rgba(0,0,0,0.55)"; ctx.shadowBlur = 16; ctx.shadowOffsetY = 7;
@@ -525,8 +556,36 @@ function drawBar(ctx, node, y0) {
         hit(node, "rk:sq:shape" + i, sx - 1, sqy + SQ - 28, sw + 2, 20, () => setShape(i + 1), "pointer", tip(SHAPES[i][0] + ": " + SHAPES[i][1]));
       }
     });
+    // face square: which face shape the Face part may roll (one pick = exactly that shape; cleared = any face). It edits the Face card's "Face" row, so both stay in step.
+    withAnim(ctx, S, 4, xc, by, () => {
+      cap("FACE", xc);
+      const fp = D.parts.find((q) => q.key === "face"), fg = fp && fp.data.groups.find((g) => g.name === "Face");
+      const names = FACE_SHAPES.map((f) => f[0]), cf = fg ? fg.buttons.findIndex((b) => b.on) : -1;
+      const setFace = (i) => {
+        if (!fg) return;
+        S.faFrom = faceNow(S, Math.max(0, S.faIdx || 0)); S.faT = now();
+        fg.buttons.forEach((b) => { b.on = false; });
+        const b = fg.buttons.find((x) => x.label === names[i]); if (b && i >= 0) b.on = true;
+        S.faIdx = Math.max(0, i); bump(node, 700); commit(node, false);
+      };
+      if (cf >= 0 && S.faIdx !== cf) { S.faIdx = cf; if (!S.faFrom) S.faFrom = FACE_SHAPES[cf][2]; }
+      tile(xc, "#ff9a3e", "#ff7f1f", 22);
+      ctx.save(); rr(ctx, xc, sqy, SQ, SQ, 22); ctx.clip();
+      ctx.globalAlpha *= on ? 1 : 0.45;
+      drawFace(ctx, xc + SQ / 2, sqy + 16, SQ * 0.68, faceNow(S, Math.max(0, cf >= 0 ? cf : (S.faIdx || 0))), "#3a1c08", cf >= 0 ? 1 : 0.3);
+      if (cf < 0) { ctx.font = F(700, 11); ctx.fillStyle = "#3a1c08"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("ANY FACE", xc + SQ / 2, sqy + SQ - 36); }
+      ctx.restore();
+      under(xc, cf >= 0 ? names[cf] : "Any face", cf >= 0 ? FACE_SHAPES[cf][1] : "any face shape is rolled", cf >= 0 ? (cf + 1) + " / " + names.length : "");
+      hit(node, "rk:sq:face", xc, sqy, SQ, SQ + 36, () => setFace(cf + 1 >= names.length ? -1 : cf + 1), "pointer", tip("Face: click to step through the face shapes (click again after the last one to clear it, so any face is rolled). It picks the Face card's Face row; your own picks there are replaced by this one."));
+      const n = names.length, sw = (SQ - 20 - (n - 1) * 3) / n;
+      for (let i = 0; i < n; i++) {
+        const sx = xc + 10 + i * (sw + 3);
+        rr(ctx, sx, sqy + SQ - 22, sw, 7, 3.5); ctx.fillStyle = i === cf ? "#3a1c08" : "rgba(58,28,8,0.28)"; ctx.fill();
+        hit(node, "rk:sq:face" + i, sx - 1, sqy + SQ - 28, sw + 2, 20, () => setFace(i), "pointer", tip(names[i] + ": " + FACE_SHAPES[i][1]));
+      }
+    });
     // tips panel (the finished prompt lives next to the Saver in your workflow): a new tip for every seed, cheap to draw (text is wrapped once per tip and width)
-    withAnim(ctx, S, 4, x3, by, () => {
+    withAnim(ctx, S, 5, x3, by, () => {
       cap("DID YOU KNOW", x3);
       const bh = SQ + 36, sw = node.widgets && node.widgets.find((x) => x.name === "seed"), sv = sw ? Number(sw.value) || 0 : 0;
       if (S.tipSeed !== sv) { S.tipSeed = sv; S.tipT = now(); S.tipIdx = Math.abs(Math.imul(sv ^ (sv >>> 15), 2246822519) >>> 0) % TIPS.length; }
@@ -636,7 +695,7 @@ function setupNode(node) {
   w.serializeValue = undefined;
   node.__lcHoverOut = () => setHover(node, null);
   node.color = "#444444"; node.bgcolor = COL.panel;
-  node.size[0] = Math.max(980, node.size[0]);
+  node.size[0] = Math.max(1150, node.size[0]);
   node.setSize([node.size[0], node.computeSize()[1]]);
   const origSet = node.setSize;
   node.setSize = function (s) { this.size[0] = Math.max(MIN_W, s[0]); return origSet.call(this, [this.size[0], this.computeSize()[1]]); };

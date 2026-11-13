@@ -2,7 +2,7 @@
 
 > **Security update (2026-11-12):** the Workflow Check node is gone for good. An earlier build could install a node pack from a GitHub link written in a workflow note, and it also downloaded model files. Both features are removed with the whole node: nothing in this pack runs `git`, `pip` or downloads anything now. If you used an older version, update, and check `custom_nodes` for packs you do not recognise. Thanks to lonecatone23 for reporting it.
 
-**No_Thing Roulette Bar and Prompt Bars.** A completely free roulette randomiser for ComfyUI: pick a Style, how much, what stays in frame and the shape, press **Roll all**, and the prompt writes itself (roughly millions of combinations). Face, hair, body, makeup, outfit and underwear in one wide node, with Simple and Advanced pages, a fixed seed to repeat any roll, and tips in the node.
+**No_Thing Roulette Bar and Prompt Bars.** A completely free roulette randomiser for ComfyUI: pick a Style, how much, what stays in frame, the body shape and the face shape, press **Roll all**, and the prompt writes itself (roughly millions of combinations). Face, hair, body, makeup, outfit and underwear in one wide node, with Simple and Advanced pages, a fixed seed to repeat any roll, and tips in the node.
 
 Free to use, not free to copy: see [LICENSE](LICENSE). Works with the [LightCraft Edit Page](https://github.com/No-thing/ComfyUI-LightCraft). Install: copy this folder into `ComfyUI/custom_nodes/`, restart ComfyUI, hard-refresh the browser.
 
@@ -187,6 +187,10 @@ A fifth square next to **In frame**: the general body shape in five steps, **Ver
 ### Luxury Couture (underwear)
 A new Underwear style with 37 high-end designer lingerie sets: sheer silk and organza robes, Chantilly and Leavers lace, gold-hardware strap harnesses (pentagram, star, art deco, constellation, filigree chains), thigh straps and hip / backside harnesses, pearls and crystals. It leaves out bunny ears, fishnets, face veils and gothic chokers, and never adds a second robe on top of a set that already has one. Nodes saved before it existed get the button added automatically. It is also picked by the Club Glam, Boudoir Romantic and Masquerade Ball styles.
 
+
+
+## Face square (Roulette Bar, Simple page)
+A sixth square next to **Shape**: the face shape, **Oval, Heart, Round, Square, Diamond, Long, V-line, Angular, Soft full** (click to step, click a bar to jump, click again after the last one to clear it so any face is rolled). It is the same row as the **Face** button row on the Face card in Advanced, so the two always agree; picking a shape here switches the other Face buttons off. Eyes and lips are still rolled freely. The node is a little wider than before to make room for the square.
 
 ## Boho Hippie (theme)
 Modern festival hippie: dreadlocks, braids, beads, shells and wraps in the hair (new hair category "Dreads & Boho"), patchwork skirts, crochet, kimonos, chunky sweaters, layered crystal jewellery, hand-poked tattoos, and a "Boho Crochet" lingerie family. Icon: web/icons/boho_hippie.png.
