@@ -190,7 +190,7 @@ A new Underwear style with 37 high-end designer lingerie sets: sheer silk and or
 
 
 ## Face square (Roulette Bar, Simple page)
-A sixth square next to **Shape**: the face shape, **Oval, Heart, Round, Square, Diamond, Long, V-line, Angular, Soft full** (click to step, click a bar to jump, click again after the last one to clear it so any face is rolled). It is the same row as the **Face** button row on the Face card in Advanced, so the two always agree; picking a shape here switches the other Face buttons off. Eyes and lips are still rolled freely. The node is a little wider than before to make room for the square.
+A square next to **Shape**: the face shape, **Oval, Heart, Round, Square, Diamond, Long, V-line, Angular, Soft full** (click to step, click a bar to jump, click again after the last one to clear it so any face is rolled). It is the same row as the **Face** button row on the Face card in Advanced, so the two always agree; picking a shape here switches the other Face buttons off. Eyes and lips are still rolled freely. The node is a little wider than before to make room for the square.
 
 ## Boho Hippie (theme)
 Modern festival hippie: dreadlocks, braids, beads, shells and wraps in the hair (new hair category "Dreads & Boho"), patchwork skirts, crochet, kimonos, chunky sweaters, layered crystal jewellery, hand-poked tattoos, and a "Boho Crochet" lingerie family. Icon: web/icons/boho_hippie.png.
